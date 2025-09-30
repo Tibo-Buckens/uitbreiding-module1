@@ -1,10 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-if [ ! -d "tempdir" ]; then
-  mkdir tempdir
-fi
-
 cat > app/Dockerfile << _EOF_
 FROM node:lts-alpine
 RUN apk add --no-cache python3 g++ make
