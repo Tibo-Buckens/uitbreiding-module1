@@ -1,4 +1,7 @@
 node {
+     triggers {
+        githubPush() 
+    }
     stage('Preparation') {
         catchError(buildResult: 'SUCCESS') {
             sh 'docker stop getting-started'
@@ -10,5 +13,11 @@ node {
     }
     stage('Results') {
         build 'TestTodoListApp'
+    }
+
+    stage('Deploy') {
+            steps {
+                sh 'docker run -dp 3000:3000 --name getting-started getting-started '
+            }
     }
 }
