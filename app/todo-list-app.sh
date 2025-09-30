@@ -12,5 +12,5 @@ _EOF_
 
 cd app || exit
 docker build -t getting-started .
-docker run -dp 3000:3000 todolistrunning getting-started 
+docker run -dp 3000:3000 --name getting-started getting-started 
 docker ps -a 
