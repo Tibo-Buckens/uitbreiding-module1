@@ -5,7 +5,7 @@ if [ ! -d "tempdir" ]; then
   mkdir tempdir
 fi
 
-cat > tempdir/Dockerfile << _EOF_
+cat > app/Dockerfile << _EOF_
 FROM node:lts-alpine
 RUN apk add --no-cache python3 g++ make
 WORKDIR /app
@@ -14,7 +14,7 @@ RUN yarn install --production
 CMD ["node", "/app/src/index.js"]
 _EOF_
 
-cd tempdir || exit
+cd app || exit
 docker build -t getting-started .
 docker run -dp 3000:3000 getting-started
 docker ps -a 
