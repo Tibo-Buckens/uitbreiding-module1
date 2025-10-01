@@ -1,31 +1,21 @@
 node {
-    stages {
-        stage('Preparation') {
-            steps {
-                catchError(buildResult: 'SUCCESS') {
-                    sh 'docker stop getting-started || true'
-                    sh 'docker rm getting-started || true'
-                }
-            }
+    stage('Preparation') {
+        catchError(buildResult: 'SUCCESS') {
+            sh 'docker stop getting-started || true'
+            sh 'docker rm getting-started || true'
         }
+    }
 
-        stage('Build') {
-            steps {
-                build 'BuildTodoListApp'
-            }
-        }
+    stage('Build') {
+        build 'BuildTodoListApp'
+    }
 
-        stage('Results') {
-            steps {
-                build 'TestTodoListApp'
-            }
-        }
+    stage('Results') {
+        build 'TestTodoListApp'
+    }
 
-        stage('Deploy') {
-            steps {
-                sh 'docker build -t getting-started .'
-                sh 'docker run -dp 3000:3000 --name getting-started getting-started'
-            }
-        }
+    stage('Deploy') {
+        sh 'docker build -t getting-started .'
+        sh 'docker run -dp 3000:3000 --name getting-started getting-started'
     }
 }
