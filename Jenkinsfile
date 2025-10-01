@@ -15,6 +15,6 @@ node {
     }
 
     stage('Deploy') {
-        sh'ls -R'
+        sh'ls'
     }
 }
