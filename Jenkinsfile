@@ -1,4 +1,4 @@
-node {
+pipeline {
     triggers {
         pollSCM('H/2 * * * *') // check elke 5 minuten
     }
