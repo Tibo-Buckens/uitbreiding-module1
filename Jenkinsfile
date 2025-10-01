@@ -1,8 +1,4 @@
-pipeline {
-    triggers {
-        pollSCM('H/1 * * * *') // check elke 5 minuten
-    }
-
+node {
     stages {
         stage('Preparation') {
             steps {
