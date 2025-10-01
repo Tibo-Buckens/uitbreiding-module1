@@ -15,6 +15,7 @@ node {
     }
 
     stage('Deploy') {
-        sh'ls -R'
+        sh 'docker build -t getting-started ./app/Dockerfile'
+        sh 'docker run -dp 3000:3000 --name getting-started getting-started'
     }
 }
